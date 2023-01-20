@@ -14,22 +14,26 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y openjdk-17-jdk
     - name: Installing Ant
       run: sudo apt-get install ant
-    
+          
+    # Echo
+    - name: LS -A
+      run: ls -a
+      
     # Build & Test
     - name: Building
-      working-directory: ./rock-paper-scissor
+      working-directory: rock-paper-scissor
       run: ant -f build.xml compile
     - name: Testing
-      working-directory: ./rock-paper-scissor
+      working-directory: rock-paper-scissor
       run: ant -f build.xml test
-      
+
     # Package
     - name: Packaging
-      working-directory: ./rock-paper-scissor
+      working-directory: rock-paper-scissor
       run: ant package
     - name: Archiving
       uses: actions/upload-artifact@v2
       with:
-        working-directory: ./rock-paper-scissor
+        working-directory: rock-paper-scissor
         name: mse-rockpaperscissor.jar
         path: dist/mse-rockpaperscissor.jar
