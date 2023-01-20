@@ -17,15 +17,19 @@ jobs:
     
     # Build & Test
     - name: Building
-      run: cd rock-paper-scissor && ant -f build.xml compile
+      working-directory: ./rock-paper-scissor
+      run: ant -f build.xml compile
     - name: Testing
+      working-directory: ./rock-paper-scissor
       run: ant -f build.xml test
       
     # Package
     - name: Packaging
+      working-directory: ./rock-paper-scissor
       run: ant package
     - name: Archiving
       uses: actions/upload-artifact@v2
       with:
+        working-directory: ./rock-paper-scissor
         name: mse-rockpaperscissor.jar
         path: dist/mse-rockpaperscissor.jar
