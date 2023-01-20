@@ -1,0 +1,31 @@
+name: MSE-CICD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Setup
+    - name: Installing Java
+      run: sudo apt-get update && sudo apt-get install -y openjdk-17-jdk
+    - name: Installing Ant
+      run: sudo apt-get install ant
+    
+    # Build & Test
+    - name: Building
+      run: ant -f build.xml compile
+    - name: Testing
+      run: ant -f build.xml test
+      
+    # Package
+    - name: Packaging
+      run: ant package
+    - name: Archiving
+      uses: actions/upload-artifact@v2
+      with:
+        name: mse-rockpaperscissor.jar
+        path: dist/mse-rockpaperscissor.jar
