@@ -33,4 +33,4 @@ jobs:
 
     # Package
     - name: Packaging
-      run: ant package
+      run: ant jar
