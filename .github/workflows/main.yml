@@ -11,6 +11,10 @@ jobs:
 
     steps:
     # Setup
+    - name: Checkout code into the Github Actions runner file system
+      uses: actions/checkout@v2
+    
+    # Installing
     - name: Installing Java
       run: sudo apt-get update && sudo apt-get install -y openjdk-17-jdk
     - name: Installing Ant
