@@ -17,7 +17,7 @@ jobs:
     
     # Build & Test
     - name: Building
-      run: ant -f build.xml compile
+      run: cd rock-paper-scissor && ant -f build.xml compile
     - name: Testing
       run: ant -f build.xml test
       
