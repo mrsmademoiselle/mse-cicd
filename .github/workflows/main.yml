@@ -5,10 +5,15 @@ on:
   push:
     branches: [ "main" ]
 
+# Default Working Directory
+defaults:
+  run:
+    working-directory: rock-paper-scissor
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
     # Setup
     - name: Checkout code into the Github Actions runner file system
@@ -22,12 +27,10 @@ jobs:
 
     # Build & Test
     - name: Building
-      run: ant -buildfile rock-paper-scissor/build.xml compile
+      run: ant compile
     - name: Testing
-      working-directory: rock-paper-scissor
-      run: ant -buildfile rock-paper-scissor/build.xml test
+      run: ant test
 
     # Package
     - name: Packaging
-      working-directory: rock-paper-scissor
-      run: ant -buildfile rock-paper-scissor/build.xml package
+      run: ant package
